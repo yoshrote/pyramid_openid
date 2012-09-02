@@ -72,7 +72,7 @@ def verify_openid(context, request):
     return HTTPBadRequest()
 
 
-def worthless_callback(request, success_dict, success_dict = {}):
+def worthless_callback(context, request, success_dict = {}):
     pass
 
 
