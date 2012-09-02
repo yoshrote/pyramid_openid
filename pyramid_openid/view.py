@@ -142,7 +142,7 @@ def process_incoming_request(context, request, incoming_openid_url):
     realm_name = settings.get('openid.realm_name', request.host_url)
     temp_url = urlparse.urlparse(request.url)
     temp_url_qs = urlparse.parse_qs(temp_url.query)
-    temp_url_qs.pop(settings.get('openid.param_field_name', 'openid'))
+    temp_url_qs.pop(settings.get('openid.param_field_name', 'openid'), None)
     return_url = urlparse.urlunsplit((temp_url.scheme, temp_url.netloc, \
                  temp_url.path, temp_url_qs, temp_url.fragment))
     redirect_url = openid_request.redirectURL(realm_name, return_url)
