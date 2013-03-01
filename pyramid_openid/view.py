@@ -140,7 +140,7 @@ def process_incoming_request(context, request, incoming_openid_url):
                 'No OpenID services found for %s' % incoming_openid_url)
     #Not sure what the point of setting this to anything else is
     realm_name = settings.get('openid.realm_name', request.host_url)
-    temp_url = urlparse.urlparse(settings.get('openid.return_to', request.url))
+    temp_url = urlparse.urlparse(request.url)
     temp_url_qs = urlparse.parse_qs(temp_url.query)
     temp_url_qs.pop(settings.get('openid.param_field_name', 'openid'), None)
     return_url = urlparse.urlunsplit((temp_url.scheme, temp_url.netloc, \
