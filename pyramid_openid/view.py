@@ -65,10 +65,10 @@ def verify_openid(context, request):
     log.info('OpenID Field to search for: %s' % openid_field)
     incoming_openid_url = request.params.get(openid_field, None)
     openid_mode = request.params.get('openid.mode', None)
-    if incoming_openid_url is not None:
-        return process_incoming_request(context, request, incoming_openid_url)
-    elif openid_mode == 'id_res':
+    if openid_mode == 'id_res':
         return process_provider_response(context, request)
+    elif incoming_openid_url is not None:
+        return process_incoming_request(context, request, incoming_openid_url)
     return HTTPBadRequest()
 
 
